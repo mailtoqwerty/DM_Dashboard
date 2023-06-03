@@ -36,3 +36,222 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* styles.css */
+
+.top-navbar {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 1px;
+  background-color: #24425c;
+  color: #e2e2e2;  
+  padding-left: 2px; 
+
+}
+
+.logo{
+ padding: 1px;
+}
+
+.batchsummary{
+  border-radius: 15px;
+  
+}
+.loading{
+  text-align:end;
+ font-weight:bolder ;
+
+
+}
+.filterborder{
+  border-radius:4px;  
+}
+
+.filterspadding{
+  
+padding-left: 50px;
+}
+
+thead th {
+  background-color: #f2f2f2;
+  position: sticky;
+  
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+.link{
+  text-decoration: none;  
+  color:hsl(0, 0%, 100%) ;  
+  /* padding-right: 100px; */
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left: 30px;
+}
+
+.link:hover{
+  color: #d2d2d2;
+}
+
+
+.margin{
+  margin-left: 280px;
+  /* text-align: center; */
+  margin-top: 70px;
+  position:absolute;
+}
+
+.topnav-padding{
+  padding-inline: 10px;
+}
+
+
+.heading{
+  color: #24425c;;
+  /* text-align: center; */
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.formtext{
+  /* color: aqua; */
+  font-family:"Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: smaller;
+
+}
+.addbutton{
+  justify-content:space-between;
+  
+}
+
+.buttonradious{
+  border-radius: 7px;
+  color: aliceblue;
+  background-color: #24425c;
+
+}
+.tableheadcolor{
+  /* background-color:#24425c;; */
+  
+  color: #000000;
+  font-family:"Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  /* position:absolute; */
+}
+
+.text{
+  text-decoration: none;
+  text-align: start;
+  font-family:"Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.font{
+  font-size: small;
+  font-weight: normal;
+
+  
+}
+
+.dashboard-icons  {
+  display: flex;
+  justify-content:space-evenly 
+}
+
+.searchbarwidth{
+  width: 500px; 
+}
+
+.fixed-header{
+  z-index: 50 ;
+}
+.dashboard{
+  padding: 5px;
+}
+
+.search-bar input {
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+
+.search-bar button {
+  padding: 5px 10px 5px ;
+  background-color: hsl(0, 0%, 100%);
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-inline: 5px;
+  /* margin-right: 50px; */
+}
+
+.search-bar button:hover {
+  background-color: #d2d2d2;
+}
+
+.search-icon input{
+border-radius: 8px; 
+}
+
+.search-icon button{
+  border:2px solid black; 
+  padding-right:-5px;
+  border-radius: 8px;   
+  }
+  
+.side-navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #e3e3e3a8;
+  color: #000000;
+  margin-top: 45px;
+  position: relative;
+}
+
+.side-navbar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-navbar li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.side-navbar li:hover {
+  background-color: #949292;
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+ 
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filterborder{
+  /* width: 1rem; */
+  border-radius: 3px;
+}
