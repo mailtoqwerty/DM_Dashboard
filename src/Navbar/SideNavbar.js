@@ -17,8 +17,7 @@ const SideNavbar = () => {
               <NavDropdown.Item as={Link} to="/normalizationheader" >Normalization_config_Header</NavDropdown.Item>                     
               <NavDropdown.Item as={Link} to="/normalizationdetails"  >Normalization_Config_Details</NavDropdown.Item>
             </NavDropdown>  
-            
-            
+           
                 <Nav.Link as={Link} to="/totalexceptions" >Total Exceptions</Nav.Link>      
                 <div>
                 <Nav.Link as={Link} to="/exceptions"  >EXC_BAT001</Nav.Link> 

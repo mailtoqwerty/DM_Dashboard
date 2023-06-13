@@ -3,17 +3,18 @@ import { useParams } from "react-router";
 import axios from "axios";
 import '../App.css'
 
-const Exceptions = (props) => {
+const Exceptions = () => {
   const params = useParams();
   const [data, setData] = useState([]);
   const [filterValues, setFilterValues] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5241/api/Exception/stagewise/${params.batchId}?stage=${params.procesStage}`).then((response) => {
+    // http://localhost:5241/api/Exception/stagewise/BAT001?stage=Validation&runid=2
+    axios.get(`http://localhost:5241/api/Exception/stagewise/${params.fileId}?stage=${params.procesStage}&runid=${params.runId}`).then((response) => {
       setData(response.data);
       initializeFilters(response.data);
     });
-  }, [params.batchId,params.procesStage]);
+  }, [params.fileId,params.procesStage,params.runId]);
 
   const initializeFilters = (data) => {
     const filters = {};
@@ -56,7 +57,7 @@ const Exceptions = (props) => {
 
   return (
     <div className="margin">
-      <h4 className="heading">Exceptions :</h4>
+      <strong className="heading">Exceptions: {params.fileId} in {params.procesStage} of RunId {params.runId}  </strong>
       <table className="table table-striped">
         <thead>
           <tr className="tableheadcolor">

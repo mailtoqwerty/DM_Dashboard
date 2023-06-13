@@ -10,7 +10,7 @@ const TransformationException = (props) => {
   const [filterValues, setFilterValues] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5241/api/Exception/stagewise/BAT001?stage=Transformation`).then((response) => {
+    axios.get(`http://localhost:5241/api/Exception/stagewise/FILE001?stage=Transformation`).then((response) => {
       setData(response.data);
       initializeFilters(response.data);
     });
@@ -57,7 +57,7 @@ const TransformationException = (props) => {
 
   return (
     <div className="margin">
-      <h4 className="heading">TransformationException :</h4>
+      <strong className="heading">TransformationException :</strong>
       <table className="table table-striped">
         <thead>
           <tr className="tableheadcolor">

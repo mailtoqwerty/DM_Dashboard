@@ -41,7 +41,7 @@ const VariableConfiguration = () => {
   return (
     <div className=' margin '>
         <div className='d-flex addbutton '>
-            <h4 className='heading'>VariableConfiguration:</h4>         
+            <strong className='heading'>VariableConfiguration:</strong>         
         
             <button  onClick={handleShow} className='buttonradious' > Add </button>
         

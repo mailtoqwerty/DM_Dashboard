@@ -48,11 +48,43 @@
   background-color: #24425c;
   color: #e2e2e2;  
   padding-left: 2px; 
+  height: 6%;
 
 }
 
 .logo{
  padding: 1px;
+ margin-left: 1%;
+ display: flex;
+ justify-content: space-between;
+}
+.systemname{
+  padding-left: 1px;
+  margin-right: 2%;
+}
+
+.notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background: red;
+  color: white;
 }
 
 .batchsummary{
@@ -84,13 +116,12 @@ table {
   width: 100%;
 }
 
-
 .link{
   text-decoration: none;  
   color:hsl(0, 0%, 100%) ;  
   /* padding-right: 100px; */
   font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .link:hover{
@@ -99,10 +130,11 @@ table {
 
 
 .margin{
-  margin-left: 280px;
+  margin-left: 240px;
   /* text-align: center; */
   margin-top: 70px;
   position:absolute;
+
 }
 
 .topnav-padding{
@@ -117,7 +149,7 @@ table {
 }
 
 .formtext{
-  /* color: aqua; */
+  /* color: rgb(255, 0, 0); */
   font-family:"Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: smaller;
 
@@ -138,8 +170,25 @@ table {
   
   color: #000000;
   font-family:"Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px; 
   
   /* position:absolute; */
+}
+.formwidth{
+  margin-top:-15px;
+ 
+ 
+}
+.cursor{
+  cursor: pointer;
+}
+
+.check{
+  width: 20px;
+  height: 20px;
+  /* margin-top: 20px; */
+  /* padding: 5px; */
+  /* padding-top: 10px; */
 }
 
 .text{
@@ -168,13 +217,15 @@ table {
   z-index: 50 ;
 }
 .dashboard{
-  padding: 5px;
+  padding: 2px;
+  padding-right: 2px;
+  /* justify-content: space-between; */
 }
 
 .search-bar input {
   padding: 5px;
   margin-right: 10px;
-  border-radius: 20px;
+  border-radius: 0px;
 }
 
 .search-bar button {

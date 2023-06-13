@@ -1,5 +1,6 @@
  import React, { useState,useEffect } from 'react'
  import axios from 'axios'
+ import { BsTrash3 } from "react-icons/bs"
 import NormalizationDetailsForm from '../Forms/NormalizationDetailsForm';
 import { Modal, Button, Form } from "react-bootstrap";
 
@@ -13,16 +14,16 @@ import { Modal, Button, Form } from "react-bootstrap";
 
   useEffect(() => {
   
-    axios.get('')
+    axios.get('http://localhost:5241/api/NormalizationConfigurationDetail')
         .then(response => {setData(response.data)})
         .catch(error => {console.error(error)})
          
     }, []);
   
-    const deletetransfer = (fileName) => {
-      axios.delete(``)
+    const deletenormdetail = (fieldName) => {
+      axios.delete(`http://localhost:5241/api/NormalizationConfigurationDetail/${fieldName}`)
         .then(response => {
-          setData( data.filter(item => item.fileName !== fileName));
+          setData( data.filter(item => item.fieldName !== fieldName));
         })
         .catch(error => console.log(error));
     };
@@ -30,8 +31,8 @@ import { Modal, Button, Form } from "react-bootstrap";
    return (
      <div className='margin'>
       <div className='d-flex addbutton '>
-        <h4 className='heading'>Normalization Configuration Details:</h4>
-        {/* <button  onClick={handleShow} className='buttonradious' > Add </button> */}
+        <strong className='heading'>Normalization Configuration Details:</strong>
+        <button  onClick={handleShow} className='buttonradious' > Add </button>
       
         <Modal show={show}>        
           <Modal.Body>
@@ -46,20 +47,21 @@ import { Modal, Button, Form } from "react-bootstrap";
       <table  className='table  table-striped '>
         <thead>
           <tr className='tableheadcolor '>
-            <th className='p-2'>FileName</th>
-            <th className='p-2'>FiledName</th>
-            <th className='p-2'>Table </th>
-            <th className='p-2'>Column</th>
+            <th className='p-2'>FileId</th>
+            <th className='p-2'>FieldName</th>
+            <th className='p-2'>TableName </th>
+            <th className='p-2'>ColumnName</th>
           </tr>          
         </thead>
         <tbody className="text font">
           {data.map((item,id)=>{
             return(
               <tr key={id} >
-                <td>{item.fileName}</td>
+                <td>{item.fileId}</td>
                 <td>{item.fieldName}</td>
-                <td>{item.table}</td>
-                <td>{item.column}</td>
+                <td>{item.tableName}</td>
+                <td>{item.columnName}</td>
+                <td><span onClick={() => deletenormdetail(item.fieldName)}> <BsTrash3/></span></td>
               </tr>
             )
           })}

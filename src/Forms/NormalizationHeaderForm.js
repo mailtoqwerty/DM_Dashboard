@@ -12,12 +12,12 @@ const NormalizationHeaderForm = () => {
 
   return (
     <div className='row'>
-        <center><h4 className='heading'>NormalizationConfigurationHeader</h4></center>    
+        <center><strong className='heading'>NormalizationConfigurationHeader</strong></center>    
         <div  className="mt-2">
 
         <form className='formtransparent form-control formtext' onSubmit={handelSubmit}>
           <div>
-           <div> <label>FileName</label></div>
+           <div> <label>FileId</label></div>
             <input className='form-control' type='text' placeholder='fileName' onChange={handelChange}/>
           </div>
           <div>

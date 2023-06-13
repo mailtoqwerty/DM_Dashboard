@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
-import './App.css'
+import '../App.css'
 
 const TotalRecords = () => {
   const params = useParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5241/api/Totalrecs/${params.batchId}?stage=${params.procesStage}`)
+    axios.get(`http://localhost:5241/api/Totalrecs/${params.fileId}?stage=${params.procesStage}`)
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, [params.batchId, params.procesStage]);
+  }, [params.fileId, params.procesStage]);
   
   
   return ( 
     <div className="margin">
-      <h4 className="heading">TotalRecords :</h4>
+      <strong className="heading">Total Records of {params.procesStage} in {params.fileId}:</strong>
       <table className="table table-striped">
         <thead>
           <tr className="tableheadcolor">

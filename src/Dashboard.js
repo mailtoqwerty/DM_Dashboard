@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
-import TotalRecords from './TotalRecords';
+import TotalRecords from './Records/TotalRecords';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -15,7 +15,7 @@ const Dashboard = () => {
   return (
     <div className='margin'>
       <div className="d-flex dashboard">
-        <div className="card width" >
+        <div className="card width m-2" >
           <div className="card-body">
             <h5 className="card-title"> Validation Exceptions</h5>
             <h6 className="card-subtitle mb-2 text-muted">BAT001</h6>
@@ -25,7 +25,7 @@ const Dashboard = () => {
           </div>     
         </div> 
 
-        <div class="card width" >
+        <div class="card width m-2" >
           <div class="card-body">
             <h5 class="card-title"> Transformation Exceptions</h5>
             <h6 class="card-subtitle mb-2 text-muted">BAT001</h6>
@@ -35,7 +35,7 @@ const Dashboard = () => {
           </div>     
         </div>
 
-        <div class="card width" >
+        <div class="card width m-2" >
           <div class="card-body">
             <h5 class="card-title">Total Exceptions</h5>
             <h6 class="card-subtitle mb-2 text-muted">BAT001</h6>
@@ -45,7 +45,7 @@ const Dashboard = () => {
           </div>     
         </div>
 
-        <div class="card width" >
+        <div class="card width m-2" >
           <div class="card-body">
             <h5 class="card-title">Exceptions</h5>
             <h6 class="card-subtitle mb-2 text-muted">BAT001</h6>

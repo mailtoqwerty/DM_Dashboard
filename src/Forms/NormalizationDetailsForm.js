@@ -3,30 +3,32 @@ import React from 'react'
 const NormalizationDetailsForm = () => {
   return (
     <div className='row'>
-        <center><h4 className='heading'>Normalization Configuration Details</h4></center>    
+        <center><strong className='heading'>Normalization Configuration Details</strong></center>    
 
        <div  className="mt-2">
-       <form className='formtransparent form-control formtext'>
+       <form className='formtransparent form-control '>
+            <div className='formtext'>
             <div>   
-                <div> <label>FileName:</label></div>           
-                <input className='form-control' type='text' placeholder='FileName'/>                
+                <div> <label><strong>FileId:</strong></label></div>           
+                <input className='form-control' type='text' placeholder='FileId'/>                
             </div>
             <div>
-                <div><label>FieldName:</label></div>
+                <div><label><strong>FieldName:</strong></label></div>
                 <input className='form-control' type='text' placeholder='FieldName'/>                
             </div>
             <div>
-                <div><label>Table:</label></div>
-                <input className='form-control' type='text' placeholder='Table'/>                
+                <div><label><strong>TableName:</strong></label></div>
+                <input className='form-control' type='text' placeholder='TableName'/>                
             </div>
             <div>
-                <div><label>Column:</label></div>
-                <input  className='form-control' type='text' placeholder='Column'/>                
+                <div><label><strong>ColumnName:</strong></label></div>
+                <input  className='form-control' type='text' placeholder='ColumnName'/>                
             </div>
             <div  className='row mt-1 justify-content-center'>
               <div  className=' m-3 col-4 '>
                 <button className='btn btn-primary form-control' >Submit</button>
               </div>              
+            </div>
             </div>
         </form>
        </div>

@@ -10,7 +10,7 @@ const ExtractionExceptions = (props) => {
   const [filterValues, setFilterValues] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5241/api/Exception/stagewise/BAT001?stage=Extraction`).then((response) => {
+    axios.get(`http://localhost:5241/api/Exception/stagewise/FILE001?stage=Extraction`).then((response) => {
       setData(response.data);
       initializeFilters(response.data);
     });
@@ -57,7 +57,7 @@ const ExtractionExceptions = (props) => {
 
   return (
     <div className="margin">
-      <h4 className="heading">ExtractionExceptions :</h4>
+      <strong className="heading">ExtractionExceptions :</strong>
       <table className="table table-striped">
         <thead>
           <tr className="tableheadcolor">

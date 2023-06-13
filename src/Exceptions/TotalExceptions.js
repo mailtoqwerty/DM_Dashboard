@@ -16,7 +16,7 @@
        
     return (
       <div className='margin'>
-        <h4 className="heading">Total Exceptions:</h4>  
+        <strong className="heading">Total Exceptions:</strong>  
         
         <table className=" table   table-striped">
           <tr className=''>

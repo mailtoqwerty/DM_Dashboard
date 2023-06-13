@@ -15,8 +15,14 @@ const Landingpage = () => {
     <div className=''>  
         <div className='fixed-top'>
             <Nav className="top-navbar   ">   
-                <h4 > <Link as={Link} to="/" className='link'>Dashboard</Link></h4> 
                 
+            <div className="logo">
+                <Link to="https://www.techoptima.in/" target="_blank" ><img src={Techoptima} 
+                 alt='Techoptima Logo' width="40px" height="40px"/></Link>
+            &nbsp;&nbsp;
+            <h4 class = "systemname">DMWorkbench</h4> 
+             </div> 
+            
                 <div className="search-icon  ">
                         <input type="text" placeholder="Search..." className='searchbarwidth' />
                         <button type="submit"  class="search-button"><i class="fa fa-search"> <FcSearch/></i> </button>                        
@@ -30,13 +36,12 @@ const Landingpage = () => {
                         <button type="button" className="btn btn-secondary text-dark " >
                             <AiOutlineUsergroupAdd /> 
                         </button>   
-                        <button type="button" className="btn btn-secondary text-dark  " >
-                            <IoIosNotificationsOutline /> <span className="badge bg-danger">2</span>
+                        <button type="button" className=" text-dark notification " >
+                            <IoIosNotificationsOutline /> <span className="badge">2</span>
                         </button>       
                     </div>
                 </div>    
-                <div className="logo"><Link to="https://www.techoptima.in/" target="_blank" ><img src={Techoptima}  alt='Techoptima Logo' width="40px" height="40px"/></Link>  </div> 
-
+                
             </Nav>
         </div>
        
@@ -46,13 +51,15 @@ const Landingpage = () => {
    
 
         <div className='side-navbar fixed-top'>   
-            <Navbar className=' p-1' variant="success">        
+            <Navbar className=' p-1' variant="success">  
+                  
                 <Nav className='list-group-item list-group-item-action'> 
+                    <Nav.Link as={Link} to="/" >Dashboard</Nav.Link>        
                     <NavDropdown  title="Configurations"  className="dropdown" id="extraction-dropdown">           
-                        <NavDropdown.Item as={Link} value="1" to="/extraction">Extraction Configuration</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/validation">Validation Configuration</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/transformation">Transformation Configuration</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/variable" >Variable Configuration</NavDropdown.Item>  
+                        <NavDropdown.Item as={Link} value="1" to="/extraction">Extraction</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/validation">Validation</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/transformation">Transformation</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/variable" >Variable</NavDropdown.Item>  
                         <NavDropdown.Item as={Link} to="/normalizationheader" >Normalization_config_Header</NavDropdown.Item>                     
                         <NavDropdown.Item as={Link} to="/normalizationdetails"  >Normalization_Config_Details</NavDropdown.Item>
                     </NavDropdown>                      
@@ -61,17 +68,14 @@ const Landingpage = () => {
                     <Nav.Link as={Link} to="/extractionExceptions" > ExtractionExceptions</Nav.Link>   
                     <Nav.Link as={Link} to="/validatrionExceptions"> ValidationExceptions</Nav.Link>
                     <Nav.Link as={Link} to="/transformationExceptions">TransformationExceptions</Nav.Link>
-                    <Nav.Link as={Link} to="/normalizationexception" >NormalizationExceptions</Nav.Link>   
+                    <Nav.Link as={Link} to="/normalizationexception" >NormalizationExceptions</Nav.Link>  
+                    <Nav.Link as={Link} to="/validatrionExceptions" >SampleExceptions</Nav.Link>   
                 </Nav>     
             </Navbar>
            
         </div>
         <Outlet />
         </div>
-        
-        
-       
-   
   )
 }
 

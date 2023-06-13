@@ -10,7 +10,7 @@ const ValidationExceptions = (props) => {
   const [filterValues, setFilterValues] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5241/api/Exception/stagewise/BAT001?stage=Validation`).then((response) => {
+    axios.get(`http://localhost:5241/api/Exception/stagewise/FILE001?stage=Validation`).then((response) => {
       setData(response.data);
       initializeFilters(response.data);
     });
@@ -57,7 +57,7 @@ const ValidationExceptions = (props) => {
 
   return (
     <div className="margin">
-      <h4 className="heading">ValidationExceptions :</h4>
+      <strong className="heading">ValidationExceptions :</strong>
       <table className="table table-striped">
         <thead>
           <tr className="tableheadcolor">

@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 const VariableConfigurationForm = () => {
     const [data,setData]=useState({
         variableName:'',
-        filename:'',
-        filePath:''
+        description:'',
+        value:''
     })
 
-    const{variableName,fileName,filePath}=data
+    const{variableName,description,value}=data
 
     const handelchange=(e)=>{
         setData({...data,[e.target.name]:e.target.value})
@@ -20,7 +20,7 @@ const VariableConfigurationForm = () => {
 
   return (
     <div className=' row '>
-        <h2><center>Variable Configuration</center></h2>
+        <strong><center>Variable Configuration</center></strong>
         <div className=''>
             <form className='formtransparent formtext form-control' onSubmit={handelSubmit}>
                 <div className='m-2'>
@@ -28,12 +28,12 @@ const VariableConfigurationForm = () => {
                     <input type='text'  className='form-control' placeholder='variableName' name='variableName' value={variableName} onChange={handelchange}/>
                 </div>
                 <div className='m-2'>
-                    <div><label><strong>FileName:</strong></label></div>
-                    <input type='text'  className='form-control' placeholder='FileName' name='fileName' value={fileName} onChange={handelchange}/>
+                    <div><label><strong>Description:</strong></label></div>
+                    <input type='text'  className='form-control' placeholder='Description' name='description' value={description} onChange={handelchange}/>
                 </div>
                 <div className='m-2'>
-                   <div> <label><strong>FilePath:</strong></label></div>
-                    <input type='text' className='form-control' placeholder='FilePath' name='filePath' value={filePath} onChange={handelchange}/>
+                   <div> <label><strong>Value:</strong></label></div>
+                    <input type='text' className='form-control' placeholder='Value' name='value' value={value} onChange={handelchange}/>
                 </div>
                 <div className='row mt-2 justify-content-center'>
                     <div className='  col-5'>

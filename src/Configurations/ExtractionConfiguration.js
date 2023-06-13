@@ -1,151 +1,216 @@
-import React, { useState,useEffect } from 'react'
-import axios from 'axios'
-import '../App.css'
+
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../App.css';
 import { BsTrash3 } from "react-icons/bs";
+import { BiEdit } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import Extractionform from '../Forms/Extractionform';
-// import { AiFillDelete } from "react-icons/ai";
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css'
+import 'reactjs-popup/dist/index.css';
 import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 const ExtractionConfiguration = () => {
-const[data,setData]=useState([]);
-const [selectedItems, setSelectedItems] = useState([]);
-const [show, setShow] = useState(false);
+  const [data, setData] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [show, setShow] = useState(false);
+  const [editData, setEditData] = useState({});
+  const [isEditFormOpen, setIsEditFormOpen] = useState(false);
+  const [updatedData, setUpdatedData] = useState({});
 
-const handleShow = () => setShow(true);
-const handelclose=()=>setShow(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setEditData({});
+    setUpdatedData({});
+    setIsEditFormOpen(false);
+  };
+  // ------------------
 
-useEffect(() => {
-  
-  axios.get('http://localhost:5241/api/ExtractionConfiguration')
-      .then(response => {setData(response.data)})
-      .catch(error => {console.error(error)})
-    
+
+  // ___________________________________
+
+  useEffect(() => {
+    axios.get('http://localhost:5241/api/ExtractionConfiguration')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }, []);
 
-  // const handleCheckboxChange = (itemId) => {
-  //   const selectedIndex = selectedItems.indexOf(itemId);
-  //   let newSelectedItems = [...selectedItems];
-
-  //   if (selectedIndex === -1) {
-  //     // Add the item to the selected items list
-  //     newSelectedItems.push(itemId);
-  //   } else {
-  //     // Remove the item from the selected items list
-  //     newSelectedItems.splice(selectedIndex, 1);
-  //   }
-
-  //   setSelectedItems(newSelectedItems);
-  // };
-
- 
-
-  // const handleDelete = (batchId) => {
-  //   axios.delete(`http://localhost:5241/api/ExtractionConfiguration/${batchId}`)
-  //     .then(response => {
-  //       setData(data.filter((item) => !selectedItems.includes(item.batchId)));
-  //       setSelectedItems([]);
-  //     })
-  //     .catch(error => console.log(error));
-  // };
-
-  const handleDelete = (batchId) => {
-    axios.delete(`http://localhost:5241/api/ExtractionConfiguration/${batchId}`)
+  const handleDelete = (fileName) => {
+    axios.delete(`http://localhost:5241/api/ExtractionConfiguration/${fileName}`)
       .then(response => {
-        setData(data.filter((item) => item.batchId!==batchId));
-       
+        setData(data.filter((item) => item.fileName !== fileName));
       })
       .catch(error => console.log(error));
   };
 
-
-
-  const handleDeleteSelected = () => {
-    const updatedData = data.filter((item) => !selectedItems.includes(item.id));
-    setData(updatedData);
-    setSelectedItems([]);
+  const handleEdit = (item) => {
+    setEditData(item);
+    setIsEditFormOpen(true);
+    setUpdatedData(item);
   };
 
+  const handleUpdate = () => {
+    axios.put(`http://localhost:5241/api/ExtractionConfiguration/${editData.fileId}`, updatedData)
+      .then(response => {
+        setData(data.map(item => (item.fileId === editData.fileId ? response.data : item)));
+        handleClose();
+      })
+      .catch(error => console.log(error));
+  };
 
- 
-
-  // const update=(fileName)=>{
-  //   axios.put(`http://192.168.29.128/api/ConfigExtractions/${updateData.fileName}`, { fileName: updateData.fileName })
-  //   .then(response=>{
-  //     setData(data.map(item => (item.id === updateData.id ? response.data : item)));
-  //     setUpdateData({
-  //       fileName: ''  
-  //     })
-  //   })
-  // }
-
-
-    
   return (
-    <div className=' margin '>   
-    <div className='d-flex addbutton '>
-      <h4 className='heading '>Extraction Configuration:</h4> 
+    <div className='margin'>
+      <div className='d-flex addbutton'>
+        <strong className='heading'>Extraction Configuration:</strong>
+        <button onClick={handleShow} className='buttonradious'>Add</button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Body>
+            <button className='justify-content-end buttonradious' onClick={handleClose}>X</button>
+            <Extractionform />
+          </Modal.Body>
+        </Modal>
+      </div>
 
-       <button  onClick={handleShow} className='buttonradious' > Add </button>
-     
-      <Modal show={show}>        
-        <Modal.Body>
-          <>
-          <button className='justify-content-end buttonradious' onClick={handelclose}>X</button><Extractionform />
-           </>
-        </Modal.Body>              
-      </Modal>  
-      
-    </div>
-   
-      <table className='table table-striped ' > 
-        <thead  >
+      <table className='table table-striped'>
+        <thead>
           <tr className='tableheadcolor'>
-            <th className='p-2 '>BatchId</th>   
-            <th className='p-2 '>FileName</th>   
-            <th className='p-2'>Num_Of_Fields</th>  
-            <th className='p-2'>TypeofFile</th>  
-            <th className='p-2'>Delimiter</th>   
+            <th className='p-2'>FileId</th>
+            <th className='p-2'>FileName</th>
+            <th className='p-2'>Num_Of_Fields</th>
+            <th className='p-2'>TypeofFile</th>
+            <th className='p-2'>Delimiter</th>
             <th className='p-2'>SequenceOrder</th>
             <th className='p-2'>Predecessor</th>
             <th className='p-2'>Normalization</th>
-            <th className='p-2'>ProgramName</th>                         
+            <th className='p-2'>ProgramName</th>
+            <th className='p-2'>Actions</th>
           </tr>
-                                                
-            {
-              data.map((item,id)=>{
-                return(
-                <tr key={id} className='text font'>
-                
-                  <td>{item.batchId}</td>
-                  <td>{item.fileName}</td>
-                  <td>{item.noOfFields}</td>
-                  <td>{item.typeofFile}</td>
-                  <td>{item.delimiter}</td>
-                  <td>{item.sequence}</td>
-                  <td>{item.predecessor}</td>
-                  <td>{item.normalizationConfiguration}</td>
-                  <td>{item.programName}</td>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item.fileId} className='text font'>
+              <td>{item.fileId}</td>
+              <td>{item.fileName}</td>
+              <td>{item.noOfFields}</td>
+              <td>{item.typeofFile}</td>
+              <td>{item.delimiter}</td>
+              <td>{item.sequence}</td>
+              <td>{item.predecessor}</td>
+              <td>{item.normalizationConfiguration}</td>
+              <td>{item.programName}</td>
+              <td >
+                 <span className="cursor" onClick={() => handleEdit(item) }><BiEdit/></span>
+                <span  className='p-2 cursor' onClick={() => handleDelete(item.fileName)}><BsTrash3 /></span>          
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-                  
-                   <td>
-                   <span onClick={() => handleDelete(item.fileName)} ><BsTrash3/></span>    
-                   {/* <td><span onClick={() => deletetransfer(item.fileName)}> <BsTrash3/></span></td> */}
+      {/* ------------------------- */}
 
-                   </td>                 
+            
+      <div className='row' >
+      {isEditFormOpen && (
+        <Modal show={isEditFormOpen} onHide={handleClose}  >
+          <Modal.Body className='formwidth ' >
 
-                  </tr>                                   
-                )
-              })
-            }   
-            </thead>                                       
-          </table>
-      {/* </div>                       */}
-    </div>  
-  )
+         
+          <div className='mt-4  ' >
+           <center> <strong className='heading'>Extraction Form:</strong></center>
+             <form className=' form-control  '>
+           
+             <div className='col formtext' >
+              <div><label><strong>FileId:</strong></label></div>
+                <input className='form-control ' type={'text'}  value={updatedData.fileId || ''} />
+              </div>  
+
+              <div className='col formtext' >
+              <div><label><strong>FileName:</strong></label></div>
+                <input className='form-control ' type={'text'} placeholder='FileName'name='fileName' value={updatedData.fileName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fileName: e.target.value })}/>
+              </div>   
+          
+
+            
+              <div  className='col formtext'><lable><strong>Number of Fields:</strong></lable></div>
+              <div>
+                <input className='form-control'  type="text" value={updatedData.noOfFields || ''} onChange={(e) => setUpdatedData({ ...updatedData, noOfFields: e.target.value })}/>
+              </div>
+            
+
+            
+              <div  className='col formtext'><lable><strong>Type of File:</strong></lable></div>
+              <div>
+                <input className='form-control' type="text" value={updatedData.typeofFile || ''} onChange={(e) => setUpdatedData({ ...updatedData, typeofFile: e.target.value })} />
+              </div>
+            
+            
+              <div  className='col formtext'><> <lable><strong>Delimiter:</strong></lable></></div>
+              <div>
+              <input className='form-control' type="text" value={updatedData.delimiter || ''} onChange={(e) => setUpdatedData({ ...updatedData, delimiter: e.target.value })}  />
+              </div>
+            
+
+          
+              <div  className='col formtext'><lable><strong>Sequence Order:</strong></lable></div>
+              <div>
+              <input className='form-control'
+                type="text"
+                value={updatedData.sequence || ''}
+                onChange={(e) => setUpdatedData({ ...updatedData, sequence: e.target.value })}
+              />
+              </div>
+          
+
+          
+              <div  className='col formtext'><lable><strong>Predecessor:</strong></lable></div>
+              <div>
+              <input className='form-control'
+                type="text"
+                value={updatedData.predecessor || ''}
+                onChange={(e) => setUpdatedData({ ...updatedData, predecessor: e.target.value })}
+              />
+              </div>
+          
+
+        
+            <div  className='col formtext'>  <lable><strong>Normalization Configuration:</strong></lable></div>
+              <div>
+              <input className='form-control'
+                type="text"
+                value={updatedData.normalizationConfiguration || ''}
+                onChange={(e) => setUpdatedData({ ...updatedData, normalizationConfiguration: e.target.value })}
+              />  
+              </div>
+        
+              <div  className='col formtext'><lable><strong>Program Name:</strong></lable></div>
+              <div>       
+                  <input className='form-control' type="text"  value={updatedData.programName || ''} onChange={(e) => setUpdatedData({ ...updatedData, programName: e.target.value })} />
+              </div>
+       
+        
+           <div className='row m-2 justify-content-center'>
+              <div className='col-4'>
+                <button type='submit' onClick={handleUpdate} className='btn btn-primary form-control'>Update</button>
+              </div>
+            </div>
+          </form>
+          </div>
+          </Modal.Body>
+         </Modal>
+      )}
+      </div>
+      
+
+    </div>
+  );
 }
 
 export default ExtractionConfiguration;

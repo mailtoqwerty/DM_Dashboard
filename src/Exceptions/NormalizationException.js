@@ -10,7 +10,7 @@ const NormalizationException = (props) => {
   const [filterValues, setFilterValues] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5241/api/Exception/stagewise/BAT001?stage=Normalization`).then((response) => {
+    axios.get(`http://localhost:5241/api/Exception/stagewise/FILE001?stage=Normalization`).then((response) => {
       setData(response.data);
       initializeFilters(response.data);
     });
@@ -57,7 +57,7 @@ const NormalizationException = (props) => {
 
   return (
     <div className="margin">
-      <h4 className="heading">NormalizationException :</h4>
+      <strong className="heading">NormalizationException :</strong>
       <table className="table table-striped">
         <thead>
           <tr className="tableheadcolor">

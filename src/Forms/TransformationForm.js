@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const TransformationForm = () => {
     const [data,setData]=useState({
-        fileName:'',
+        fileId:'',
         fieldName:'',
         source:'',
         destination:'',
@@ -12,7 +12,7 @@ const TransformationForm = () => {
         transfType:''
     })
   
-    const{fileName,fieldName,source,destination,derivationFunction,transfType}=data;
+    const{fileId,fieldName,source,destination,derivationFunction,transfType}=data;
 
     const handler=e=>{
         setData({...data,[e.target.name]:e.target.value})
@@ -22,7 +22,7 @@ const TransformationForm = () => {
         e.preventDefault();  
         
       const data={
-        fileName:fileName,
+        fileId:fileId,
         fieldName:fieldName,
         source:source,
         destination:destination,
@@ -39,33 +39,33 @@ const TransformationForm = () => {
  
   return ( 
     <div className='row    '>      
-    <center><h2 className='heading'>Transformation Configuration</h2></center>
+    <center><strong className='heading'>Transformation Configuration</strong></center>
         <div className="" >            
             <form className='formtransparent formtext form-control' onSubmit={submithandler}>       
                 <div className='row mt-2'>                    
                     <div className='mt-2'>
-                    <div><label><strong>FileName:</strong></label></div>
-                        <input className='form-control' type={'text'} placeholder='FileName' name='fileName' value={fileName}  onChange={handler} />
+                    <div><label><strong>FileId:</strong></label></div>
+                        <input className='form-control' type={'text'} placeholder='FileId' name='fileId' value={fileId}  onChange={handler} />
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Field:</strong></label></div>
-                        <input className='form-control' type={'text'} placeholder='Field' name='fieldName' value={fieldName} onChange={handler} />
+                    <div><label><strong>FieldName:</strong></label></div>
+                        <input className='form-control' type={'text'} placeholder='FieldName' name='fieldName' value={fieldName} onChange={handler} />
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Source:</strong></label></div>
-                        <input className='form-control' type={'text'} placeholder='Source' name='source' value={source} onChange={handler}/>
+                    <div><label><strong>Source_Value:</strong></label></div>
+                        <input className='form-control' type={'text'} placeholder='Source_Value' name='source' value={source} onChange={handler}/>
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Destination:</strong></label></div>
-                        <input  className='form-control' type={'text'} placeholder='Desination' name='destination' value={destination} onChange={handler}/>
+                    <div><label><strong>Destination_Value:</strong></label></div>
+                        <input  className='form-control' type={'text'} placeholder='Destination_Value' name='destination' value={destination} onChange={handler}/>
                     </div>
                     <div className='mt-2'>
                     <div><label><strong>Derivation_Function:</strong></label></div>
                         <input  className='form-control' type={'text'} placeholder='Derivation_Function' name='derivationFunction' value={derivationFunction} onChange={handler}/>
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Transf_Type:</strong></label></div>
-                        <input  className='form-control' type={'text'} placeholder='Transf_Type' name='transfType' value={transfType} onChange={handler}/>
+                    <div><label><strong>Transformation_Type:</strong></label></div>
+                        <input  className='form-control' type={'text'} placeholder='Transformation_Type' name='transfType' value={transfType} onChange={handler}/>
                     </div>
                 </div>
                 

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Validationform = () => {
     const[inputvalidation,setInputValidation]=useState({
-        batchId:'',
+        fileId:'',
         field:'',
         width:'',
         dataType:'',
@@ -13,7 +13,7 @@ const Validationform = () => {
         defaultValidation:'',
     });
 
-    const{batchId,field,width,dataType,precision,mandatory,defaultValidation}=inputvalidation
+    const{fileId,field,width,dataType,precision,mandatory,defaultValidation}=inputvalidation
 
     const handler=e=>{
         setInputValidation({...inputvalidation,[e.target.name]:e.target.value})
@@ -23,7 +23,7 @@ const Validationform = () => {
         e.preventDefault();
         
         const data={
-            batchId:batchId,
+            fileId:fileId,
             field:field,
             width:width,
             dataType:dataType,
@@ -40,19 +40,20 @@ const Validationform = () => {
     };
   return (   
     <div className='row' >     
-    <h2><center className='heading'>Validation Configuration</center></h2>  
+    <strong><center className='heading'>Validation Configuration</center></strong>  
         <div className="mt-2">
-            <form className='formtransparent formtext form-control' onSubmit={submithandler}>
-                <div className='row mt-2' > 
+            <form className='formtransparent  form-control' onSubmit={submithandler}>
+             <div className='formtext'>
+             <div className='row mt-2' > 
                     <div>
-                    <div><label><strong>BatchID:</strong></label></div>
-                    <input className='form-control' type={'text'} placeholder='BatchId' name='batchId' value={batchId} onChange={handler}/>
+                    <div><label><strong>FileId:</strong></label></div>
+                    <input className='form-control' type={'text'} placeholder='fileId' name='fileId' value={fileId} onChange={handler}/>
                     </div>
                 </div>
                 
                 <div className=' mt-2'>
-                    <div><label><strong>Field:</strong></label></div>
-                    <input className='form-control' type={'text'} placeholder='Field'  name='field' value={field} onChange={handler} />  
+                    <div><label><strong>FieldName:</strong></label></div>
+                    <input className='form-control' type={'text'} placeholder='FieldName'  name='field' value={field} onChange={handler} />  
                 </div>    
 
                 <div className='row mt-2'>
@@ -71,19 +72,23 @@ const Validationform = () => {
                         <input className='form-control' type={'text'} placeholder='Precision' name='precision' value={precision} onChange={handler}/>
                     </div>
                     <div className='col'>
-                    <div><label><strong>Mandatory:</strong></label></div>
-                        <input className='form-control' type={'text'} placeholder='Mandatory' name='mandatory' value={mandatory} onChange={handler}/>
+                    <div><label><strong>Mandatory:</strong></label>
+                    &nbsp;&nbsp;
+                     <input className = "check" type={'checkbox'} placeholder='Mandatory' name='mandatory' value={mandatory} onChange={handler}/>
+                    </div>
                     </div>                            
                 </div>  
                 <div className='col mt-2'>
-                <div><label><strong>Default_Validation:</strong></label></div>
+                <div><label><strong>Default_Value:</strong></label></div>
                     <input className='form-control' type={'text'} placeholder='Default_Validation' name='defaultValidation' value={defaultValidation}  onChange={handler}/>
                 </div>   
                 <div className='row mt-2 justify-content-center'>
                     <div className='  col-5'>
                         <button type='submit'  className='btn btn-primary form-control' >Submit</button>
+                        
                     </div>                
                 </div>
+             </div>
             </form>              
         </div>  
         <div className="col"> 
