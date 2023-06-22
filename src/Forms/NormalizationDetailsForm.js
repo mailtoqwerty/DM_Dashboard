@@ -6,22 +6,22 @@ const NormalizationDetailsForm = () => {
         <center><strong className='heading'>Normalization Configuration Details</strong></center>    
 
        <div  className="mt-2">
-       <form className='formtransparent form-control '>
+       <form className='formtransparent  '>
             <div className='formtext'>
             <div>   
-                <div> <label><strong>FileId:</strong></label></div>           
+                <div> <label><strong className='tableheadcolor'>FileId:</strong></label></div>           
                 <input className='form-control' type='text' placeholder='FileId'/>                
             </div>
             <div>
-                <div><label><strong>FieldName:</strong></label></div>
+                <div><label><strong className='tableheadcolor'>FieldName:</strong></label></div>
                 <input className='form-control' type='text' placeholder='FieldName'/>                
             </div>
             <div>
-                <div><label><strong>TableName:</strong></label></div>
+                <div><label><strong className='tableheadcolor'>TableName:</strong></label></div>
                 <input className='form-control' type='text' placeholder='TableName'/>                
             </div>
             <div>
-                <div><label><strong>ColumnName:</strong></label></div>
+                <div><label><strong className='tableheadcolor'>ColumnName:</strong></label></div>
                 <input  className='form-control' type='text' placeholder='ColumnName'/>                
             </div>
             <div  className='row mt-1 justify-content-center'>

@@ -41,37 +41,37 @@ const TransformationForm = () => {
     <div className='row    '>      
     <center><strong className='heading'>Transformation Configuration</strong></center>
         <div className="" >            
-            <form className='formtransparent formtext form-control' onSubmit={submithandler}>       
-                <div className='row mt-2'>                    
+            <form className='formtransparent  ' onSubmit={submithandler}>       
+                <div className='row formtext '>                    
                     <div className='mt-2'>
-                    <div><label><strong>FileId:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>FileId:</strong></label></div>
                         <input className='form-control' type={'text'} placeholder='FileId' name='fileId' value={fileId}  onChange={handler} />
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>FieldName:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>FieldName:</strong></label></div>
                         <input className='form-control' type={'text'} placeholder='FieldName' name='fieldName' value={fieldName} onChange={handler} />
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Source_Value:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>Source_Value:</strong></label></div>
                         <input className='form-control' type={'text'} placeholder='Source_Value' name='source' value={source} onChange={handler}/>
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Destination_Value:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>Destination_Value:</strong></label></div>
                         <input  className='form-control' type={'text'} placeholder='Destination_Value' name='destination' value={destination} onChange={handler}/>
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Derivation_Function:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>Derivation_Function:</strong></label></div>
                         <input  className='form-control' type={'text'} placeholder='Derivation_Function' name='derivationFunction' value={derivationFunction} onChange={handler}/>
                     </div>
                     <div className='mt-2'>
-                    <div><label><strong>Transformation_Type:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>Transformation_Type:</strong></label></div>
                         <input  className='form-control' type={'text'} placeholder='Transformation_Type' name='transfType' value={transfType} onChange={handler}/>
                     </div>
                 </div>
                 
-                <div className='row m-5 justify-content-center'>
-                    <div className='  '>
-                        <button type='submit'  className='btn btn-primary form-control'>Submit</button>
+                <div className='row mt-2 justify-content-center'>
+                    <div className=' col-4 '>
+                        <button type='submit'  className='btn btn-primary form-control mt-3'>Submit</button>
                     </div>
                 </div>
             </form>     

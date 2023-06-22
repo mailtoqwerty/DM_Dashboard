@@ -11,6 +11,11 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import edit from '../edit.png';
+import del from '../delete.png';
+import plus from "../plus.png"
+
+
 
 const ExtractionConfiguration = () => {
   const [data, setData] = useState([]);
@@ -68,19 +73,20 @@ const ExtractionConfiguration = () => {
   return (
     <div className='margin'>
       <div className='d-flex addbutton'>
-        <strong className='heading'>Extraction Configuration:</strong>
-        <button onClick={handleShow} className='buttonradious'>Add</button>
+        <strong className='heading '>Extraction Configuration:</strong>
+        <button onClick={handleShow} className='buttonradious extractionbutton  p-1'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>
-            <button className='justify-content-end buttonradious' onClick={handleClose}>X</button>
+             <button className='justify-content-end xradious ' onClick={handleClose}>X</button>
             <Extractionform />
+            
           </Modal.Body>
         </Modal>
       </div>
 
-      <table className='table table-striped'>
+      <table className=' table table-bordered'>
         <thead>
-          <tr className='tableheadcolor'>
+          <tr className='tableheadcolor table-light'>
             <th className='p-2'>FileId</th>
             <th className='p-2'>FileName</th>
             <th className='p-2'>Num_Of_Fields</th>
@@ -95,7 +101,7 @@ const ExtractionConfiguration = () => {
         </thead>
         <tbody>
           {data.map((item) => (
-            <tr key={item.fileId} className='text font'>
+            <tr key={item} className='text font'>
               <td>{item.fileId}</td>
               <td>{item.fileName}</td>
               <td>{item.noOfFields}</td>
@@ -106,8 +112,8 @@ const ExtractionConfiguration = () => {
               <td>{item.normalizationConfiguration}</td>
               <td>{item.programName}</td>
               <td >
-                 <span className="cursor" onClick={() => handleEdit(item) }><BiEdit/></span>
-                <span  className='p-2 cursor' onClick={() => handleDelete(item.fileName)}><BsTrash3 /></span>          
+                 <span className="p-2 cursor" onClick={() => handleEdit(item) }><img className='iconfont' src={edit} alt ='edit button'/></span>
+                <span  className=' cursor' onClick={() => handleDelete(item.fileName)}><img className='deleteicon' src={del} alt='delete image' /></span>          
               </td>
             </tr>
           ))}
@@ -123,54 +129,67 @@ const ExtractionConfiguration = () => {
           <Modal.Body className='formwidth ' >
 
          
-          <div className='mt-4  ' >
+          <div className='mt-4 formtext ' >
            <center> <strong className='heading'>Extraction Form:</strong></center>
-             <form className=' form-control  '>
+             <form className=' form-control tableheadcolor mt-2 '>
            
-             <div className='col formtext' >
-              <div><label><strong>FileId:</strong></label></div>
+             <div className='col formtext tableheadcolor m-1' >
+              <div><label><strong >FileId:</strong></label></div>
                 <input className='form-control ' type={'text'}  value={updatedData.fileId || ''} />
               </div>  
 
-              <div className='col formtext' >
+              <div className='col formtext tableheadcolor m-1' >
               <div><label><strong>FileName:</strong></label></div>
-                <input className='form-control ' type={'text'} placeholder='FileName'name='fileName' value={updatedData.fileName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fileName: e.target.value })}/>
+                <input className='form-control ' type={'text'} placeholder='FileName' value={updatedData.fileName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fileName: e.target.value })}/>
               </div>   
           
 
             
-              <div  className='col formtext'><lable><strong>Number of Fields:</strong></lable></div>
+              <div  className='col formtext tableheadcolor m-1'><lable><strong>Number of Fields:</strong></lable></div>
               <div>
                 <input className='form-control'  type="text" value={updatedData.noOfFields || ''} onChange={(e) => setUpdatedData({ ...updatedData, noOfFields: e.target.value })}/>
               </div>
             
 
             
-              <div  className='col formtext'><lable><strong>Type of File:</strong></lable></div>
-              <div>
-                <input className='form-control' type="text" value={updatedData.typeofFile || ''} onChange={(e) => setUpdatedData({ ...updatedData, typeofFile: e.target.value })} />
+            
+              <div className='row col mt-1'>
+               <div className='col'>
+               <div  className='formtext tableheadcolor m-1'>
+                  <lable><strong>Type of File:</strong></lable>
+                </div>
+              
+                <div>
+                  <input className='form-control' type="text" value={updatedData.typeofFile || ''} onChange={(e) => setUpdatedData({ ...updatedData, typeofFile: e.target.value })} />
+                </div>
+                </div>
+              
+              
+                <div className='col'>
+                <div  className=' formtext tableheadcolor m-1'><> <lable><strong>Delimiter:</strong></lable></></div>
+                <div>
+                <input className='form-control' type="text" value={updatedData.delimiter || ''} onChange={(e) => setUpdatedData({ ...updatedData, delimiter: e.target.value })}  />
+                </div>
+                </div>
+              
+
+            
+               <div className='col'>
+               <div  className='col formtext tableheadcolor m-1'><lable><strong>Sequence Order:</strong></lable></div>
+                <div>
+                <input className='form-control'
+                  type="text"
+                  value={updatedData.sequence || ''}
+                  onChange={(e) => setUpdatedData({ ...updatedData, sequence: e.target.value })}
+                />
+                </div>
+               </div>
               </div>
-            
-            
-              <div  className='col formtext'><> <lable><strong>Delimiter:</strong></lable></></div>
-              <div>
-              <input className='form-control' type="text" value={updatedData.delimiter || ''} onChange={(e) => setUpdatedData({ ...updatedData, delimiter: e.target.value })}  />
-              </div>
-            
+         
+          
 
           
-              <div  className='col formtext'><lable><strong>Sequence Order:</strong></lable></div>
-              <div>
-              <input className='form-control'
-                type="text"
-                value={updatedData.sequence || ''}
-                onChange={(e) => setUpdatedData({ ...updatedData, sequence: e.target.value })}
-              />
-              </div>
-          
-
-          
-              <div  className='col formtext'><lable><strong>Predecessor:</strong></lable></div>
+              <div  className='col formtext tableheadcolor m-1'><lable><strong>Predecessor:</strong></lable></div>
               <div>
               <input className='form-control'
                 type="text"
@@ -181,7 +200,7 @@ const ExtractionConfiguration = () => {
           
 
         
-            <div  className='col formtext'>  <lable><strong>Normalization Configuration:</strong></lable></div>
+            <div  className='col formtext tableheadcolor m-1'>  <lable><strong>Normalization Configuration:</strong></lable></div>
               <div>
               <input className='form-control'
                 type="text"
@@ -190,7 +209,7 @@ const ExtractionConfiguration = () => {
               />  
               </div>
         
-              <div  className='col formtext'><lable><strong>Program Name:</strong></lable></div>
+              <div  className='col formtext tableheadcolor m-1'><lable><strong>Program Name:</strong></lable></div>
               <div>       
                   <input className='form-control' type="text"  value={updatedData.programName || ''} onChange={(e) => setUpdatedData({ ...updatedData, programName: e.target.value })} />
               </div>

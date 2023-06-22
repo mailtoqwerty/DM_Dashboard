@@ -20,10 +20,10 @@ const SuccesfullRecords = () => {
 
   return (
     <div className='margin'>
-      <strong className="heading">SuccessFull Records: {params.procesStage} of {params.fileId}</strong>
-      <table className="table table-striped">
+      <strong className="heading">SuccessFull Records: SuccessFull {params.procesStage}s in {params.fileId}</strong>
+      <table className="table table-bordered">
         <thead>
-          <tr className="tableheadcolor">
+          <tr className="tableheadcolo table-light formtext">
             {data.length > 0 &&          
               Object.keys(data[0]).map((key) => (
                 <th key={key}>{key}</th>))}

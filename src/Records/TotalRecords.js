@@ -21,9 +21,9 @@ const TotalRecords = () => {
   return ( 
     <div className="margin">
       <strong className="heading">Total Records of {params.procesStage} in {params.fileId}:</strong>
-      <table className="table table-striped">
+      <table className="table table-bordered">
         <thead>
-          <tr className="tableheadcolor">
+          <tr className="tableheadcolor table-light formtext">
             {data.length > 0 &&          
               Object.keys(data[0]).map((key) => (
                 <th key={key}>{key}</th>))}

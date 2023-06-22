@@ -7,6 +7,12 @@ import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import 'reactjs-popup/dist/index.css';
 
+import edit from '../edit.png';
+import del from '../delete.png'
+import plus from "../plus.png"
+
+
+
 const ValidationConfiguration = () => {
     const [data, setData] = useState([]);
     const [selectedItems, setSelectedItems] = useState([]);
@@ -30,10 +36,10 @@ const ValidationConfiguration = () => {
 
     },[]);       
 
-    const deletvalidatios=(fileName)=>{
-        axios.delete(`http://localhost:5241/api/ValidationConfiguration/${fileName}`)
+    const deletvalidatios=(fieldName)=>{
+        axios.delete(`http://localhost:5241/api/ValidationConfiguration/${fieldName}`)
         .then(responce=>{
-            setData(data.filter(item=>item.fileName !==fileName)) 
+            setData(data.filter(item=>item.fieldName !==fieldName)) 
         })
         .catch(error => console.log(error));
     }
@@ -51,29 +57,30 @@ const ValidationConfiguration = () => {
           })
           .catch(error => console.log(error));
       };
+      
   return (
     <div className=' margin'>       
           <div className='d-flex addbutton '>
-          <strong className='heading'>Validation Configuration:</strong>     
+         <center> <strong className='heading '>Validation Configuration:</strong>  </center>   
 
-<button  onClick={handleShow} className='buttonradious' > Add </button>
+         <button onClick={handleShow} className='buttonradious validationbutton'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
 
-<Modal show={show} onHide={handleClose}>        
-<Modal.Body>
-<>
-<button className='justify-content-end buttonradious' onClick={handleClose}>X</button><Validationform/>
-        </>
-</Modal.Body> 
- 
-</Modal>   
+        <Modal show={show} onHide={handleClose}>        
+            <Modal.Body>
+            <>
+                <button className='justify-content-end xradious' onClick={handleClose}>X</button>
+                <Validationform/>
+            </>
+            </Modal.Body>         
+        </Modal>   
             
          </div>   
 
         <div className=''>
         
-            <table className='table  table-striped' >
+            <table className='table  table-bordered' >
                 <thead>
-                    <tr className='tableheadcolor '>
+                    <tr className='tableheadcolor table-light '>
                         <th className='p-2'>FileId</th>   
                         <th className='p-2'>FieldName</th>                            
                         <th className='p-2'>Width</th>  
@@ -84,7 +91,7 @@ const ValidationConfiguration = () => {
                         <th className='p-2'>Actions</th>
                     </tr>
                 </thead>
-                <tbody className='bordered table-striped'>
+                <tbody className=''>
                 {
                     data.map((item,id)=>{
                         return(
@@ -98,8 +105,8 @@ const ValidationConfiguration = () => {
                                 <td>{item.defaultValue}</td>
                                 
                                 <td>
-                                    <span className="cursor p-2" onClick={() => handleEdit(item) }><BiEdit/></span>
-                                    <span className="cursor" onClick={()=>deletvalidatios(item.fileName)}><BsTrash3/></span>
+                                    <span className="cursor p-2" onClick={() => handleEdit(item) }><img className='iconfont' src={edit} alt ='edit button'/></span>
+                                    <span className="cursor" onClick={()=>deletvalidatios(item.fieldName)}><img   className='deleteicon' src={del} alt='delete image'    /></span>
                                 </td>
 
                             </tr>
@@ -114,47 +121,48 @@ const ValidationConfiguration = () => {
                     isEditFormOpen&&(
                         <Modal show={isEditFormOpen} onHide={handleClose}>
                             <Modal.Body>
-                            <center> <strong className='heading'>Extraction Form:</strong></center>
-                                <form className=' form-control  '>
+                            <center> <strong className='heading'>Validation Form:</strong></center>
+                                <form className=' formtext'>
                             
-                                <div className='col formtext' >
-                                    <div><label><strong>FileId:</strong></label></div>
-                                    <input className='form-control ' type={'text'}  value={updatedData.fileId || ''} />
-                                </div>  
+                                <div className='row col'>
+                                    <div className='col mt-2 ' >
+                                        <div><label><strong className='tableheadcolor'>FileId:</strong></label></div>
+                                        <input className='form-control ' type={'text'}  value={updatedData.fileId || ''} />
+                                    </div>  
 
-                                <div className=' mt-2'>
-                                    <div><label><strong>FieldName:</strong></label></div>
-                                    <input className='form-control' type={'text'} placeholder='FieldName'  name='fieldName' value={updatedData.fieldName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fieldName: e.target.value })}/>  
+                                    <div className=' col mt-2 '>
+                                        <div><label><strong className='tableheadcolor'>FieldName:</strong></label></div>
+                                        <input className='form-control' type={'text'} placeholder='FieldName'  name='fieldName' value={updatedData.fieldName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fieldName: e.target.value })}/>  
+                                    </div> 
+
+                                    <div className='col mt-2 '>
+                                        <div><label><strong className='tableheadcolor'>Width:</strong></label></div>
+                                        <input className='form-control' type={'text'} placeholder='Width' name='width' value={updatedData.width || ''}/>
+                                    </div>  
+                                </div>
+
+                                <div className='row col '>
+                                    <div className='col mt-2 '>
+                                        <div><label><strong className='tableheadcolor'>DataType:</strong></label></div>
+                                        <input className='form-control' type={'text'} placeholder='DataType' name='dataType' value={updatedData.dataType || ''}/>
+                                    </div>
+                                    <div className='col  mt-2'>
+                                        <label><strong className='tableheadcolor'>Precision:</strong></label>
+                                        <input className='form-control' type={'text'} placeholder='Precision' name='precision' value={updatedData.precision || ''}/>
+                                    </div>
+                                    <div className='col  mt-2'>
+                                        <div><label><strong className='tableheadcolor'>Mandatory:</strong></label></div>                                   
+                                        <input className = "form-control" type={'text'} placeholder='Mandatory' name='mandatory' value={updatedData.mandatory || ''} />                                    
+                                    </div> 
                                 </div> 
 
-                                <div className='mt-2'>
-                                    <div><label><strong>Width:</strong></label></div>
-                                    <input className='form-control' type={'text'} placeholder='Width' name='width' value={updatedData.width || ''}/>
-                                </div>  
-                                <div className=' mt-2'>
-                                    <div><label><strong>DataType:</strong></label></div>
-                                    <input className='form-control' type={'text'} placeholder='DataType' name='dataType' value={updatedData.dataType || ''}/>
-                                </div>   
-
-                                <div className='col'>
-                                    <div><label><strong>Precision:</strong></label></div>
-                                        <input className='form-control' type={'text'} placeholder='Precision' name='precision' value={updatedData.precision || ''}/>
-                                </div>
-                                <div className='col'>
-                                    <div><label><strong>Mandatory:</strong></label></div>
-                                   
-                                    <input className = "form-control" type={'text'} placeholder='Mandatory' name='mandatory' value={updatedData.mandatory || ''} />
-                                    
-                                </div>  
-
-                                <div>
-                                   <div><label><strong>Default_Value:</strong></label></div>
-                                  <input className='form-control' type={'text'} placeholder='Default_Validation' name='defaultValidation' value={updatedData.defaultValidation || ''} />
-                               
+                                <div  className='col '>
+                                   <div><label><strong className='tableheadcolor'>Default_Value:</strong></label></div>
+                                   <input className='form-control' type={'text'} placeholder='Default_Validation' name='defaultValidation' value={updatedData.defaultValidation || ''} />                               
                                 </div>
                                 
                                 <div className='row m-2 justify-content-center'>
-                                    <div className='col-4'>
+                                    <div className='col-4 mt-3'>
                                         <button type='submit' onClick={handleUpdate} className='btn btn-primary form-control'>Update</button>
                                     </div>
                                 </div>

@@ -20,24 +20,24 @@ const VariableConfigurationForm = () => {
 
   return (
     <div className=' row '>
-        <strong><center>Variable Configuration</center></strong>
+        <strong><center className='heading'>Variable Configuration</center></strong>
         <div className=''>
-            <form className='formtransparent formtext form-control' onSubmit={handelSubmit}>
+            <form className='formtransparent formtext ' onSubmit={handelSubmit}>
                 <div className='m-2'>
-                    <div><label><strong>VariableName:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>VariableName:</strong></label></div>
                     <input type='text'  className='form-control' placeholder='variableName' name='variableName' value={variableName} onChange={handelchange}/>
                 </div>
                 <div className='m-2'>
-                    <div><label><strong>Description:</strong></label></div>
+                    <div><label><strong className='tableheadcolor'>Description:</strong></label></div>
                     <input type='text'  className='form-control' placeholder='Description' name='description' value={description} onChange={handelchange}/>
                 </div>
                 <div className='m-2'>
-                   <div> <label><strong>Value:</strong></label></div>
+                   <div> <label><strong className='tableheadcolor'> Value:</strong></label></div>
                     <input type='text' className='form-control' placeholder='Value' name='value' value={value} onChange={handelchange}/>
                 </div>
                 <div className='row mt-2 justify-content-center'>
                     <div className='  col-5'>
-                        <button type='submit'  className='btn btn-primary form-control' >Submit</button>
+                        <button type='submit'  className='btn btn-primary form-control mt-3' >Submit</button>
                     </div>                
                 </div>
             </form>

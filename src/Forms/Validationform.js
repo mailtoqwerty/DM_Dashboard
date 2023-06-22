@@ -40,55 +40,54 @@ const Validationform = () => {
     };
   return (   
     <div className='row' >     
-    <strong><center className='heading'>Validation Configuration</center></strong>  
+        <strong><center className='heading'>Validation Configuration</center></strong>  
         <div className="mt-2">
-            <form className='formtransparent  form-control' onSubmit={submithandler}>
+            <form className='formtransparent  ' onSubmit={submithandler}>
              <div className='formtext'>
-             <div className='row mt-2' > 
-                    <div>
-                    <div><label><strong>FileId:</strong></label></div>
-                    <input className='form-control' type={'text'} placeholder='fileId' name='fileId' value={fileId} onChange={handler}/>
+                <div className='row col '>
+                    <div className='col mt-2' > 
+                        <label><strong className='tableheadcolor'>FileId:</strong></label>
+                        <input className='form-control' type={'text'} placeholder='fileId' name='fileId' value={fileId} onChange={handler}/>
+                    </div>
+                    
+                    <div className='col mt-2'>
+                        <label><strong className='tableheadcolor'>FieldName:</strong></label>
+                        <input className='form-control' type={'text'} placeholder='FieldName'  name='field' value={field} onChange={handler} />  
+                    </div> 
+
+                    <div className='col mt-2'>
+                        <label><strong className='tableheadcolor'>Width:</strong></label>
+                        <input className='form-control' type={'text'} placeholder='Width' name='width' value={width} onChange={handler}/>
                     </div>
                 </div>
-                
-                <div className=' mt-2'>
-                    <div><label><strong>FieldName:</strong></label></div>
-                    <input className='form-control' type={'text'} placeholder='FieldName'  name='field' value={field} onChange={handler} />  
-                </div>    
-
-                <div className='row mt-2'>
-                    <div className=''>
-                    <div><label><strong>Width:</strong></label></div>
-                        <input className='form-control' type={'text'} placeholder='Width' name='width' value={width} onChange={handler}/>
-                    </div>  
-                    <div className=' mt-2'>
-                    <div><label><strong>DataType:</strong></label></div>
+                <div className='row col'>
+                    <div className='col mt-2'>
+                        <div><label><strong className='tableheadcolor'>DataType:</strong></label></div>
                         <input className='form-control' type={'text'} placeholder='DataType' name='dataType' value={dataType} onChange={handler}/>
-                    </div>             
-                </div>    
-                <div className='row mt-2'>
-                    <div className='col'>
-                    <div><label><strong>Precision:</strong></label></div>
+                    </div>  
+                                        
+                    <div className='col mt-2'>
+                        <label><strong className='tableheadcolor'>Precision:</strong></label>
                         <input className='form-control' type={'text'} placeholder='Precision' name='precision' value={precision} onChange={handler}/>
                     </div>
-                    <div className='col'>
-                    <div><label><strong>Mandatory:</strong></label>
-                    &nbsp;&nbsp;
-                     <input className = "check" type={'checkbox'} placeholder='Mandatory' name='mandatory' value={mandatory} onChange={handler}/>
+
+                    <div className='col mt-2'>
+                        <label><strong className='tableheadcolor'>Mandatory:</strong></label>                
+                        <input className = "form-control" type={'text'} placeholder='Mandatory' name='mandatory' value={mandatory} onChange={handler}/>
                     </div>
-                    </div>                            
-                </div>  
+                </div>
+                                       
+             
                 <div className='col mt-2'>
-                <div><label><strong>Default_Value:</strong></label></div>
-                    <input className='form-control' type={'text'} placeholder='Default_Validation' name='defaultValidation' value={defaultValidation}  onChange={handler}/>
-                </div>   
-                <div className='row mt-2 justify-content-center'>
-                    <div className='  col-5'>
-                        <button type='submit'  className='btn btn-primary form-control' >Submit</button>
-                        
+                    <div><label><strong className='tableheadcolor'>Default_Value:</strong></label></div>
+                        <input className='form-control' type={'text'} placeholder='Default_Validation' name='defaultValidation' value={defaultValidation}  onChange={handler}/>
+                    </div>   
+                <div className='row  justify-content-center'>
+                    <div className='col-5 mt-4'>
+                        <button type='submit'  className='btn btn-primary form-control'>Submit</button>
                     </div>                
                 </div>
-             </div>
+             </div>            
             </form>              
         </div>  
         <div className="col"> 

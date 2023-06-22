@@ -57,10 +57,10 @@ const Exceptions = () => {
 
   return (
     <div className="margin">
-      <strong className="heading">Exceptions: {params.fileId} in {params.procesStage} of RunId {params.runId}  </strong>
-      <table className="table table-striped">
+      <strong className="heading ps-2">Exceptions: {params.fileId} in {params.procesStage} of RunId {params.runId}  </strong>
+      <table className="table table-bordered">
         <thead>
-          <tr className="tableheadcolor">
+          <tr className="tableheadcolor table-light">
             {data.length > 0 &&
               Object.keys(data[0]).map((key) => (
                 <th key={key}>

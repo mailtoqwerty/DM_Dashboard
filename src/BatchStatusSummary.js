@@ -1,17 +1,25 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import filterbutton from "./filterbutton.png"
+import { IoMdArrowDropup } from "react-icons/io";
+import { IoMdArrowDropdown } from "react-icons/io";
+
+import dropup from "./dropup.png";
+import dropdown from "./dropdown.png";
 
 const BatchStatusSummary = () => {
   const [data, setData] = useState([]);
   const [fileIdFilter, setFileIdFilter] = useState('');
   const [runIdFilter, setRunIdFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
   const [procesStageFilter, setProcesStageFilter] = useState('');
   const [fileIdOptions, setFileIdOptions] = useState([]);
   const [runIdOptions, setRunIdOptions] = useState([]);
   const [procesStageOptions, setProcesStageOptions] = useState([]);
+  const [statusOptions, setStatusOptions] = useState([]);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -28,6 +36,9 @@ const BatchStatusSummary = () => {
 
       const uniqueRunIds = [...new Set(fetchedData.map((item) => item.runId))];
       setRunIdOptions(uniqueRunIds);
+
+      const uniqueStatus = [...new Set(fetchedData.map((item) => item.status))];
+      setStatusOptions(uniqueStatus);
 
       const uniqueProcesStages = [...new Set(fetchedData.map((item) => item.procesStage))];
       setProcesStageOptions(uniqueProcesStages);
@@ -48,31 +59,39 @@ const BatchStatusSummary = () => {
     setProcesStageFilter(e.target.value);
   };
 
-  //   const filteredData = data.filter((item) => {
-//     const matchFileId = item.fileId.toLowerCase().includes(fileIdFilter.toLowerCase());
-//     const matchRunId = String(item.runId).toLowerCase().includes(runIdFilter.toLowerCase());
-//     const matchProcesStage = String(item.procesStage).toLowerCase().includes(procesStageFilter.toLowerCase());
-  
-//     return matchFileId && matchRunId && matchProcesStage;
-//   });
-
+  const handleStatusFilterChange = (e) => {
+    setStatusFilter(e.target.value);
+  };
 
   const filteredData = data.filter((item) => {
-    const matchFileId =  item.fileId.toLowerCase().includes(fileIdFilter.toLowerCase());
+    const matchFileId = item.fileId.toLowerCase().includes(fileIdFilter.toLowerCase());
     const matchRunId = String(item.runId).toLowerCase().includes(runIdFilter.toLowerCase());
     const matchProcesStage = String(item.procesStage).toLowerCase().includes(procesStageFilter.toLowerCase());
+    const matchStatus = String(item.status).toLowerCase().includes(statusFilter.toLowerCase());
 
-    return matchFileId && matchRunId && matchProcesStage;
+    return matchFileId && matchRunId && matchProcesStage && matchStatus;
   });
 
+  const toggleFilterVisibility = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
+
   return (
-    <div className="margin ">
-      <div className='d-flex '>
-        <strong className="heading">Batch Status: Summary</strong>
-        <div className='d-flex filterspadding'>
-          <div className="filter ">
-            <label className='p-2'><strong>FileId:</strong></label>
-            <select value={fileIdFilter} className='filterborder' onChange={handleFileIdFilterChange}>
+    <div className="margin">
+      <div className="d-flex">
+        <strong className="heading ">Batch Status: Summary</strong>
+        <span className='hidefilter' onClick={toggleFilterVisibility} > {isFilterVisible ?"" :""}  <img className='filtericon' src={filterbutton} alt='dropdown'/></span>
+
+      </div>
+
+      <div className='filterpadding'>
+      {isFilterVisible && (
+        <div className="d-flex filterspadding">
+          <div className="filter">
+            <label className="p-2">
+              <span className=' filtelable'>FileId:</span>
+            </label>
+            <select value={fileIdFilter} className="filterborder" onChange={handleFileIdFilterChange}>
               <option value="">All</option>
               {fileIdOptions.map((option) => (
                 <option key={option} value={option}>
@@ -83,8 +102,10 @@ const BatchStatusSummary = () => {
           </div>
 
           <div className="filter">
-            <label className='p-2'><strong>RunId:</strong></label>
-            <select value={runIdFilter} className='filterborder' onChange={handleRunIdFilterChange}>
+            <label className="p-2">
+              <span className=' filtelable'>RunId:</span>
+            </label>
+            <select value={runIdFilter} className="filterborder" onChange={handleRunIdFilterChange}>
               <option value="">All</option>
               {runIdOptions.map((option) => (
                 <option key={option} value={option}>
@@ -95,8 +116,10 @@ const BatchStatusSummary = () => {
           </div>
 
           <div className="filter">
-            <label className='p-2 '><strong>ProcesStage:</strong></label>
-            <select value={procesStageFilter} className='filterborder' onChange={handleProcesStageFilterChange}>
+            <label className="p-2  ">
+              <span className=' filtelable'>ProcesStage:</span>
+            </label>
+            <select value={procesStageFilter} className="filterborder" onChange={handleProcesStageFilterChange}>
               <option value="">All</option>
               {procesStageOptions.map((option) => (
                 <option key={option} value={option}>
@@ -105,13 +128,28 @@ const BatchStatusSummary = () => {
               ))}
             </select>
           </div>
+
+          <div className="filter">
+            <label className="p-2 ">
+              <span className=' filtelable'>Status:</span>
+            </label>
+            <select value={statusFilter} className="filterborder " onChange={handleStatusFilterChange}>
+              <option value="">All</option>
+              {statusOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
+      )}
       </div>
 
-      <div className='table-container'>
-        <table className=" table table-striped table-responsive" width="100%">
+      <div className="table">
+        <table className=" table table-bordered table-responsive" width="100%">
           <thead>
-            <tr className="tableheadcolor">
+            <tr className="tableheadcolor  table-light">
               <th className="single-line">FileId</th>
               <th className="single-line">RunId</th>
               <th className="single-line">ProcesStage</th>
@@ -126,7 +164,7 @@ const BatchStatusSummary = () => {
           </thead>
           <tbody>
             {filteredData.map((item, id) => (
-              <tr key={id} className='font'>
+              <tr key={id} className="font">
                 <td className="single-line">{item.fileId}</td>
                 <td className="single-line">{item.runId}</td>
                 <td className="single-line">{item.procesStage}</td>
@@ -135,13 +173,22 @@ const BatchStatusSummary = () => {
                 <td className="single-line">{item.duration}</td>
                 <td className="single-line">{item.status}</td>
                 <td className="single-line">
-                  <Link to={`/totalrecords/${item.fileId}/${item.procesStage}`} className='text'>{item.totalRecords}</Link>
+                  <Link to={`/totalrecords/${item.fileId}/${item.procesStage}`} className="text">
+                    {item.totalRecords}
+                  </Link>
                 </td>
                 <td className="single-line">
-                  <Link to={`/exceptions/${item.fileId}/${item.procesStage}/${item.runId}`} className='text'>{item.exceptions}</Link>
+                  <Link
+                    to={`/exceptions/${item.fileId}/${item.procesStage}/${item.runId}`}
+                    className="text"
+                  >
+                    {item.exceptions}
+                  </Link>
                 </td>
                 <td className="single-line">
-                  <Link to={`/succefullrecords/${item.fileId}/${item.procesStage}`} className='text'>{item.successfulRecords}</Link>
+                  <Link to={`/succefullrecords/${item.fileId}/${item.procesStage}`} className="text">
+                    {item.successfulRecords}
+                  </Link>
                 </td>
               </tr>
             ))}

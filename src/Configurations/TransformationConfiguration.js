@@ -6,6 +6,10 @@ import { BiEdit } from "react-icons/bi";
 import { Modal, Button, Form } from "react-bootstrap";
 // import Extractionform from '../Forms/Extractionform';
 import TransformationForm from '../Forms/TransformationForm';
+import edit from '../edit.png';
+import del from '../delete.png'
+import plus from "../plus.png"
+
 
 
 
@@ -60,21 +64,21 @@ const TransformationConfiguration = () => {
   return (
     <div className=' margin' > 
         <div className='d-flex addbutton ' >
-        <strong className='heading '>Transformation Configuration:</strong>  
-        <button  onClick={handleShow} className='buttonradious' > Add </button>
+        <strong className='heading ps-2 single-line '>Transformation Configuration:</strong>  
+        <button onClick={handleShow} className='buttonradious transformationbutton'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
      
       <Modal show={show}>        
         <Modal.Body>
           <>
-          <button className='justify-content-end buttonradious' onClick={handleClose}>X</button><TransformationForm/>
+          <button className='justify-content-end xradious' onClick={handleClose}>X</button><TransformationForm/>
            </>
         </Modal.Body> 
              
       </Modal>
           </div>        
-          <table className='table table-striped ' >  
+          <table className='table table-bordered ' >  
             <thead>              
-            <tr className='tableheadcolor '>
+            <tr className='tableheadcolor table-light '>
               <th className='p-2'>FileId</th>   
               <th className='p-2'>FieldName</th>                            
               <th className='p-2'>SourceValue</th>  
@@ -96,9 +100,9 @@ const TransformationConfiguration = () => {
                           <td>{item.derivationFunction}</td>
                           <td>{item.transformationType}</td>
 
-                          <td>
-                            <span className="cursor p-2" onClick={() => handleEdit(item) }><BiEdit/></span>
-                            <span onClick={() => deletetransfer(item.fileName)}> <BsTrash3/></span></td>
+                          <td className='iconfont'>
+                            <span className="cursor p-2" onClick={() => handleEdit(item) }><img className='iconfont' src={edit} alt ='edit button'/></span>
+                            <span onClick={() => deletetransfer(item.fileName)}><img className='deleteicon' src={del} alt='delete image' /></span></td>
                       </tr>
                   )
               })}
@@ -109,43 +113,43 @@ const TransformationConfiguration = () => {
                     isEditFormOpen&&(
                         <Modal show={isEditFormOpen} onHide={handleClose}>
                             <Modal.Body>
-                            <center> <strong className='heading'>Extraction Form:</strong></center>
-                                <form className=' form-control  '>
+                            <center> <strong className='heading'>Transformation Form:</strong></center>
+                                <form className='formtext'>
                             
-                                <div className='col formtext' >
-                                    <div><label><strong>FileId:</strong></label></div>
-                                    <input className='form-control ' type={'text'}  value={updatedData.fileId || ''} />
+                                <div className='col ' >
+                                    <div><label><strong className='tableheadcolor'>FileId:</strong></label></div>
+                                    <input className='form-control ' type={'text'} name='fieldId'  value={updatedData.fileId || ''} />
                                 </div>  
 
-                                <div className=' mt-2'>
-                                    <div><label><strong>FieldName:</strong></label></div>
-                                    <input className='form-control' type={'text'} placeholder='FieldName'  name='fieldName' value={updatedData.fieldName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fieldName: e.target.value })}/>  
+                                <div className=' mt-1 '>
+                                    <div><label><strong className='tableheadcolor'>FieldName:</strong></label></div>
+                                    <input className='form-control' type={'text'}   name='fieldName' value={updatedData.fieldName || ''} onChange={(e) => setUpdatedData({ ...updatedData, fieldName: e.target.value })}/>  
                                 </div> 
 
-                                <div className='mt-2'>
-                                    <div><label><strong>SourceValue:</strong></label></div>
-                                    <input className='form-control' type={'text'} placeholder='sourceValue' name='sourceValue' value={updatedData.sourceValue || ''}/>
+                                <div className='mt-1 '>
+                                    <div><label><strong className='tableheadcolor'>SourceValue:</strong></label></div>
+                                    <input className='form-control' type={'text'} name='sourceValue' value={updatedData.sourceValue || ''} onChange={(e) => setUpdatedData({ ...updatedData, sourceValue: e.target.value })}/>
                                 </div>  
-                                <div className=' mt-2'>
-                                    <div><label><strong>DestinationValue:</strong></label></div>
-                                    <input className='form-control' type={'text'} placeholder='destinationValue' name='destinationValue' value={updatedData.destinationValue || ''}/>
+                                <div className=' mt-1 '>
+                                    <div><label><strong className='tableheadcolor'>DestinationValue:</strong></label></div>
+                                    <input className='form-control' type={'text'}  name='destinationValue' value={updatedData.destinationValue || ''} onChange={(e) => setUpdatedData({ ...updatedData, destinationValue: e.target.value })}/>
                                 </div>   
 
-                                <div className='col'>
-                                    <div><label><strong>DerivationFunction:</strong></label></div>
-                                        <input className='form-control' type={'text'} placeholder='derivationFunction' name='derivationFunction' value={updatedData.derivationFunction || ''}/>
+                                <div className='mt-1 '>
+                                    <div><label><strong className='tableheadcolor'>DerivationFunction:</strong></label></div>
+                                        <input className='form-control' type={'text'}  name='derivationFunction' value={updatedData.derivationFunction || ''} onChange={(e) => setUpdatedData({ ...updatedData, derivationFunction: e.target.value })}/>
                                 </div>
-                                <div className='col'>
-                                    <div><label><strong>TransformationType:</strong></label></div>
+                                <div className='mt-1 '>
+                                    <div><label><strong className='tableheadcolor'>TransformationType:</strong></label></div>
                                    
-                                    <input className = "form-control" type={'text'} placeholder='transformationType' name='transformationType' value={updatedData.transformationType || ''} />
+                                    <input className = "form-control" type={'text'}  name='transformationType' value={updatedData.transformationType || ''} onChange={(e) => setUpdatedData({ ...updatedData, transformationType: e.target.value })} />
                                     
                                 </div>  
 
                               
                                 
                                 <div className='row m-2 justify-content-center'>
-                                    <div className='col-4'>
+                                    <div className='col-4 mt-3'>
                                         <button type='submit' onClick={handleUpdate} className='btn btn-primary form-control'>Update</button>
                                     </div>
                                 </div>
