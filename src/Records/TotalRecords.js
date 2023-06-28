@@ -39,9 +39,6 @@ const TotalRecords = () => {
           ))}
         </tbody>   
       </table> 
-
-      {/* className="single-line">        */}
-
     </div>
   )
 }

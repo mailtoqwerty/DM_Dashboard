@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../App.css';
 import { BsTrash3 } from "react-icons/bs";
 import { BiEdit } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Extractionform from '../Forms/Extractionform';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -14,10 +14,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import edit from '../edit.png';
 import del from '../delete.png';
 import plus from "../plus.png"
+import back from "../back.png";
 
 
 
 const ExtractionConfiguration = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [show, setShow] = useState(false);
@@ -72,9 +74,15 @@ const ExtractionConfiguration = () => {
 
   return (
     <div className='margin'>
+     
       <div className='d-flex addbutton'>
-        <strong className='heading '>Extraction Configuration:</strong>
-        <button onClick={handleShow} className='buttonradious extractionbutton  p-1'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
+      <span className="cursor" onClick={() => navigate(-1)}>
+      <img className='backbutton' src={back} alt='back button '/>
+        </span>
+      
+       <strong className='heading '>Extraction Configuration:</strong>
+        <sapn onClick={handleShow} className='buttonradious extractionbutton cursor p-1'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></sapn>
+      
         <Modal show={show} onHide={handleClose}>
           <Modal.Body>
              <button className='justify-content-end xradious ' onClick={handleClose}>X</button>

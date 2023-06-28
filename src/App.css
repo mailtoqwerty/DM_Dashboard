@@ -58,6 +58,10 @@
  /* background-color: #17a2b8; */
  
 }
+.playbutton{
+  height:24px;
+  width:auto;
+}
 
 .systemname{
  font-size: 24px;
@@ -120,23 +124,31 @@ font-size: 12px;
 }
 
 .filterspadding{
-    padding-left: 610px; 
-    margin-top: 12px;
+    padding-left: 630px; 
+    /* margin-top: 6px; */
 }
 .filter{
   padding-left: 10px;
 }
+/* --------Exception Filter Button------------------ */
+
+select{}
+
+/* --------Exception Filter Button------------------ */
+
 
 thead th {
   background-color: #f2f2f2;
-  position: sticky;  
+  /* position: sticky;   */
 }
 
 table {  
   width: 100%;
   /* position: static; */
-  margin-top: 15px;
-  
+  margin-top: 16px;
+  /* z-index: 9; */
+  overflow-y: auto;
+
 }
 
 
@@ -156,8 +168,9 @@ table {
 .margin{
   margin-left: 300px;
   /* text-align: center; */
-  margin-top: 100px;
+  margin-top: 78px;
   position:absolute;
+  
 }
 .buttonmargin{
  margin-left: px;
@@ -185,7 +198,10 @@ table {
   font-weight: 700;
   font-size: 20px;
   padding-bottom: 1px;
-  
+  margin-left: -15px;
+  margin-top: 10px;
+
+
  
 }
 .dmcolor{
@@ -224,7 +240,11 @@ form input{
 }
 .addbutton{
   justify-content:space-between;
+ 
   
+}
+.addbuttontext{
+  font-size: 14px;
 }
 
 .buttonradious{  
@@ -232,6 +252,9 @@ form input{
   /* border-color:#24425c; */
   color: aliceblue;
   background: #24425c;
+  height:30px;
+  width:auto;
+  margin-top: 15px;
 }
 .xradious{
   color: #000000;
@@ -263,6 +286,9 @@ form input{
   color: #000000;
   font-family:'Verdana';
   font-size: 12px; 
+  /* background-color: #DCDCDC; */
+  /* z-index: 9; */
+  /* position: relative; */
 
 }
 
@@ -289,6 +315,7 @@ form input{
 }
 .cursor{
   cursor: pointer;
+
 }
 
 .check{
@@ -327,14 +354,15 @@ form input{
   height: 32px;
 }
 
-.fixed-header{
+/* .fixed-header{
   z-index: 50 ;
-}
+} */
 .dashboard{
   padding: 2px;
   padding-right: 2px;
   /* justify-content: space-between; */
 }
+
 
 .search-bar input {
   /* padding: 3px; */
@@ -343,21 +371,16 @@ form input{
   
  
 }
-.addbuttontext{
-  font-size: 14px;  
-}
+
 .serachinput{
   border-color: #d2d2d2;
 }
 
 .search-bar button {
-  /* padding: 5px 10px 5px ; */
   background-color: hsl(0, 0%, 100%);
   border: none;
-  cursor: pointer;
-  /* border-radius: 100px; */
-  margin-inline: 5px;
-  /* margin-right: 50px; */
+  cursor: pointer;  
+  margin-inline: 5px; 
 }
 
 
@@ -391,7 +414,7 @@ border:1px solid rgb(163, 142, 142)
   position: relative;
 }
 .sidenavpadding{
-  margin-top: 25px;
+  margin-top: -10px;
   margin-left: 15px;
 
 }
@@ -402,11 +425,27 @@ width: auto;
 /* font-size: 18px; */
 
 }
-.filtericon{  
-  height:25px;
-  width: auto;
-  background-color: #ffffff;
+
+.filtericon {  
+  height:22px;
+  width: auto; 
+  margin-top: 10px;
+  /* color:#000000 */
 }
+.batchfiltericon{
+  height:23px;
+  width: auto; 
+  margin-top: 17px;
+
+}
+.exporticon{
+  height:18px;
+  width: auto; 
+  margin-top: 17px;
+
+}
+
+
 .sidenavtextcolor{
   color: #ffffff;
 }
@@ -448,43 +487,56 @@ width: auto;
   display: flex;
 }
 
-
- 
-
-
-
 .hidefilter{
-  color: #24425c;
-  margin-top: 5px;
-  /* background: none; */
-  /* background-color:#24425c; */
-  /* border:none; */
-  /* border-radius: 8px ;   */
-  margin-left: 890px;
-  /* font-size: 16px; */
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* padding: 6px 8px; */
-  height:10px; 
-  width: auto;
- 
+  margin-left: 850px;
 }
 
 
+.exceptiontable{
+  margin-top: 35px;
+  z-index: 1;
+  overflow-x: auto;
+  /* position: absolute; */
+
+}
+.exc-export-import-buttons{
+  margin-left: 590px;
+  margin-top: -1pxpx;
+}
+
+.topheading{
+  display: flex;
+  /* align-items: center; */
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  top: 11%;
+  height: 70px;
+  padding: 10px;
+  padding-left: -225px;
+  overflow: hidden;
+  /* margin: 20px; */
+  
+  /* z-index: 1; */
+}
 
 
+.backbutton{
+  margin-top:-35px;
+  height: 12px;
+  width: auto;
+}
  
 .table-container {
   max-width: 100%;
   overflow-x: auto;
-  margin-left: 15px;
+  
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  
 }
 
 th, td {
@@ -500,3 +552,8 @@ th, td {
   text-overflow: ellipsis;
 }
 
+/* --------validationheading---------- */
+.validationheading{
+  /* position: fixed; */
+
+}

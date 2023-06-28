@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Outlet } from "react-router-dom";
 import './App.css';
 import { Navbar,Nav,NavDropdown } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import play from './playbutton.png'
+import playrun from "./playrun.png"
 // import TopNavbar from './Navbar/TopNavbar';
 
 // import { IoIosNotificationsOutline } from "react-icons/io";
@@ -21,6 +23,15 @@ import search from "./search.png"
 import Data from "./data.png"
 
 const Landingpage = () => {
+    const [isRunning, setIsRunning] = useState(false);
+
+    const handleRunButtonClick = () => {
+        setIsRunning(true);
+
+        setTimeout(() => {
+            setIsRunning(false);
+          }, 2000);
+    }
 
   return (
     <div className=''>  
@@ -29,7 +40,7 @@ const Landingpage = () => {
            
             <Nav className="top-navbar">         
                 <h6 className = "systemname d-flex mt-3">
-                    <img src={Data} alt='data icon ' className='dataicon   '/><strong className='' >
+                    <img src={Data} alt='data icon ' className='dataicon'/><strong className='' >
                         <div className=''>
                         <span className='dmcolor' >DM</span>Workbench
                         </div>
@@ -43,13 +54,17 @@ const Landingpage = () => {
                 
                 <div className="search-bar">                                          
                     <div  className='d-flex'>
-                        <button type="button" className=" text-dark notification " >
+                        <button type="button" className="   " onClick={handleRunButtonClick} >
+                            {isRunning ?  <img  src={playrun} alt='Techoptima Logo' className='playbutton'/>: <img  src={play} alt='Techoptima Logo' className='playbutton'/>}
+                             
+                        </button>
+                        <button type="button" className="  notification " >
                              <img src={notification} alt='Techoptima Logo'/> <div style={{"fontSize" : '10px' }} >Notifications</div> <span className="badge">2</span>
                         </button>
-                        <button type="button" className=" text-dark " >
+                        <button type="button" className="  " >
                             <img src={settings} alt='Techoptima Logo'/> <div style={{"fontSize" : '10px' }} >setting</div>
                         </button>
-                        <button type="button" className=" text-dark " >
+                        <button type="button" className="  " >
                             <img src={profile} alt='Techoptima Logo'/>  <div style={{"fontSize" : '10px' }} >profile</div>
                         </button>                                 
                     </div>
@@ -63,7 +78,7 @@ const Landingpage = () => {
         
         <div className=''>         
             <div className=''>
-            <div className='side-navbar fixed-top col'>   
+            <div className='side-navbar fixed-top col'>  
             <Navbar className=' p-1 ' variant="success">  
                   
                 <Nav className='list-group-item list-group-item-action'> 

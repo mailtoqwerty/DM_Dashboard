@@ -9,11 +9,15 @@ import TransformationForm from '../Forms/TransformationForm';
 import edit from '../edit.png';
 import del from '../delete.png'
 import plus from "../plus.png"
+import back from "../back.png";
+
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const TransformationConfiguration = () => {
+  const navigate=useNavigate();
 
   const [data, setData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
@@ -63,9 +67,13 @@ const TransformationConfiguration = () => {
       
   return (
     <div className=' margin' > 
+    
         <div className='d-flex addbutton ' >
-        <strong className='heading ps-2 single-line '>Transformation Configuration:</strong>  
-        <button onClick={handleShow} className='buttonradious transformationbutton'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
+        <span className="" onClick={() => navigate(-1)}>
+      <img className='backbutton' src={back} alt='back button '/>
+        </span>
+        <strong className='heading  single-line '>Transformation Configuration:</strong>  
+        <span onClick={handleShow} className='buttonradious transformationbutton cursor p-1'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></span>
      
       <Modal show={show}>        
         <Modal.Body>

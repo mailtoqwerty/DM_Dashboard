@@ -15,11 +15,15 @@ import VariableConfigurationForm from '../Forms/VariableConfigurationForm';
 import edit from '../edit.png';
 import del from '../delete.png'
 import plus from "../plus.png"
+import back from "../back.png";
+
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const VariableConfiguration = () => {
+    const navigate=useNavigate();
     const [data, setData] = useState([]);
     const [selectedItems, setSelectedItems] = useState([]);
     const [show, setShow] = useState(false);
@@ -68,11 +72,14 @@ const VariableConfiguration = () => {
           .catch(error => console.log(error));
       };
   return (
-    <div className=' margin '>
+    <div className=' margin '>      
         <div className='d-flex addbutton '>
-            <strong className='heading ps-2'>VariableConfiguration:</strong>         
+            <span className="cursor" onClick={() => navigate(-1)}>
+                 <img className='backbutton' src={back} alt='back button '/>
+            </span>
+            <strong className='heading '>VariableConfiguration:</strong>         
         
-            <button onClick={handleShow} className='buttonradious variablebutton'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
+            <span onClick={handleShow} className='buttonradious variablebutton cursor p-1'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></span>
         
             <Modal show={show}>        
                 <Modal.Body>

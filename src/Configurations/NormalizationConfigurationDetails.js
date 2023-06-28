@@ -7,10 +7,14 @@ import { Modal, Button, Form } from "react-bootstrap";
 import edit from '../edit.png';
 import del from '../delete.png'
 import plus from "../plus.png"
+import back from "../back.png";
+
+import { useNavigate } from 'react-router-dom';
 
 
 
  const NormalizationConfigurationDetails = () => {
+  const navigate=useNavigate();
   const [data, setData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [show, setShow] = useState(false);
@@ -59,8 +63,12 @@ import plus from "../plus.png"
 
    return (
      <div className='margin'>
+      
       <div className='d-flex addbutton '>
-        <strong className='heading ps-2 single-line'>Normalization Configuration Details:</strong>
+      <span className="" onClick={() => navigate(-1)}>
+      <img className='backbutton' src={back} alt='back button '/>
+        </span>
+        <strong className='heading  single-line'>Normalization Configuration Details:</strong>
         <button onClick={handleShow} className='buttonradious normbutton'><span className='addbuttontext'>< img className='plusbutton'src={plus} alt='plus '/>New</span></button>
       
         <Modal show={show}>        
